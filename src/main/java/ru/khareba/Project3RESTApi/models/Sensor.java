@@ -13,13 +13,10 @@ public class Sensor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name")
+    //@Column(name = "name")
     @OneToMany (mappedBy = "sensor")
     @NotEmpty
     private List<Measurement> name; // ХРЕН ПОЙМЕШЬ ЧТО ТУТ ДЕЛАТЬ
-
-    public Sensor() {
-    }
 
     public Sensor(List<Measurement> name) {
         this.name = name;

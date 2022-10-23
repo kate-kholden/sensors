@@ -24,6 +24,7 @@ public class Measurement {
     @Column (name = "raining")
     private boolean raining;
 
+    @Column(name = "sensor_name")
     @NotEmpty (message = "Sensor name should be not empty")
     @ManyToOne
     @JoinColumn(name = "sensor_name", referencedColumnName = "name")
@@ -31,9 +32,6 @@ public class Measurement {
 
     @Column (name = "date")
     private LocalDateTime date;
-
-    public Measurement() {
-    }
 
     public int getId() {
         return id;
