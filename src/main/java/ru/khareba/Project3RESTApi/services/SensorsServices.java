@@ -29,6 +29,10 @@ public class SensorsServices {
         return foundSensor.orElseThrow(SensorNotFoundException::new);
     }
 
+    public Optional<Sensor> findByName(String name) {
+        return sensorsRepository.findByName(name);
+    }
+
     @Transactional
     public void save(Sensor sensor) {
         sensorsRepository.save(sensor);

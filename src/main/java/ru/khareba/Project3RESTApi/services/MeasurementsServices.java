@@ -4,23 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.khareba.Project3RESTApi.models.Measurement;
+import ru.khareba.Project3RESTApi.models.Sensor;
 import ru.khareba.Project3RESTApi.repositories.MeasurementsRepository;
 import ru.khareba.Project3RESTApi.util.MeasurementNotFoundException;
 
-import java.sql.SQLOutput;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
 public class MeasurementsServices {
     private final MeasurementsRepository measurementsRepository;
+    private final SensorsServices sensorsServices;
 
     @Autowired
-    public MeasurementsServices(MeasurementsRepository measurementsRepository) {
+    public MeasurementsServices(MeasurementsRepository measurementsRepository, SensorsServices sensorsServices) {
         this.measurementsRepository = measurementsRepository;
+        this.sensorsServices = sensorsServices;
     }
     public List<Measurement> findAll(){
         return measurementsRepository.findAll();
@@ -41,6 +42,8 @@ public class MeasurementsServices {
     public void save(Measurement measurement) {
         measurement.setDate(LocalDateTime.now());
         System.out.println(measurement.toString()); //TODO
+        //measurement.setSensor(new Sensor("test"));
+        //measurement.setSensor(sensorsServices.findByName(measurement.getSensor().getName()).orElse(null));
         measurementsRepository.save(measurement);
     }
 }

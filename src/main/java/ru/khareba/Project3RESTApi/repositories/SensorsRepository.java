@@ -7,7 +7,8 @@ import ru.khareba.Project3RESTApi.models.Measurement;
 import ru.khareba.Project3RESTApi.models.Sensor;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SensorsRepository extends JpaRepository <Sensor,Integer> {
-    List<Sensor> findByName (String name);}
+    Optional <Sensor> findByName (String name);}
