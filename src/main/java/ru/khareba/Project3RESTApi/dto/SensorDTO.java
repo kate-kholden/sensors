@@ -8,13 +8,13 @@ import java.util.List;
 public class SensorDTO {
 
     @NotEmpty
-    private List<Measurement> name; // ХРЕН ПОЙМЕШЬ ЧТО ТУТ ДЕЛАТЬ
+    private String name; // todo отдалить связь
 
-    public List<Measurement> getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(List<Measurement> name) {
+    public void setName(String name) {
         this.name = name;
     }
 }

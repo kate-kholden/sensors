@@ -13,15 +13,15 @@ public class Sensor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //@Column(name = "name")
-    @OneToMany (mappedBy = "sensor")
+    @Column(name = "name")
+    //@OneToMany (mappedBy = "sensor") // todo отдалить связь
     @NotEmpty
-    private List<Measurement> name; // ХРЕН ПОЙМЕШЬ ЧТО ТУТ ДЕЛАТЬ
+    private String name;
 
     public Sensor() {
     }
 
-    public Sensor(List<Measurement> name) {
+    public Sensor(String name) {
         this.name = name;
     }
 
@@ -33,11 +33,11 @@ public class Sensor {
         this.id = id;
     }
 
-    public List<Measurement> getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(List<Measurement> name) {
+    public void setName(String name) {
         this.name = name;
     }
 }

@@ -26,9 +26,9 @@ public class Measurement {
 
     @Column(name = "sensor_name")
     @NotEmpty (message = "Sensor name should be not empty")
-    @ManyToOne
+    //@ManyToOne // todo отдалить связь
     @JoinColumn(name = "sensor_name", referencedColumnName = "name")
-    private Sensor sensor; // ХРЕН ПОЙМЕШЬ ЧТО ТУТ ДЕЛАТЬ
+    private String sensor;
 
     @Column (name = "date")
     private LocalDateTime date;
@@ -65,11 +65,11 @@ public class Measurement {
         this.raining = raining;
     }
 
-    public Sensor getSensor() {
+    public String getSensor() {
         return sensor;
     }
 
-    public void setSensor(Sensor sensor) {
+    public void setSensor(String sensor) {
         this.sensor = sensor;
     }
 }
