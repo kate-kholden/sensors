@@ -3,6 +3,7 @@ package ru.khareba.Project3RESTApi.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.khareba.Project3RESTApi.models.Measurement;
 import ru.khareba.Project3RESTApi.models.Sensor;
 import ru.khareba.Project3RESTApi.repositories.SensorsRepository;
 import ru.khareba.Project3RESTApi.util.SensorNotFoundException;

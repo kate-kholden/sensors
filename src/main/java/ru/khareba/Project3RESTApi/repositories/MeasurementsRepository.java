@@ -2,6 +2,7 @@ package ru.khareba.Project3RESTApi.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import ru.khareba.Project3RESTApi.models.Measurement;
 
 import javax.transaction.Transactional;
@@ -11,4 +12,5 @@ import java.util.List;
 public interface MeasurementsRepository  extends JpaRepository <Measurement, Integer> {
 
     List<Measurement> findByRaining(boolean isRaining);
+    List<Measurement> findBySensor (String name);
 }

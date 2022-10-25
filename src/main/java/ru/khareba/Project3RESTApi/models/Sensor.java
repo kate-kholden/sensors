@@ -14,7 +14,6 @@ public class Sensor {
     private int id;
 
     @Column(name = "name")
-    //@OneToMany (mappedBy = "sensor") // todo отдалить связь
     @NotEmpty
     private String name;
 

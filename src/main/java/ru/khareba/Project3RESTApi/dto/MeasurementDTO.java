@@ -16,7 +16,7 @@ public class MeasurementDTO {
     private boolean raining;
 
     @NotEmpty (message = "Sensor name should be not empty")
-    private Sensor sensor; // ХРЕН ПОЙМЕШЬ ЧТО ТУТ ДЕЛАТЬ
+    private Sensor sensor;
 
     public float getValue() {
         return value;

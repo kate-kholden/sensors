@@ -8,7 +8,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ru.khareba.Project3RESTApi.dto.MeasurementDTO;
+import ru.khareba.Project3RESTApi.dto.SensorDTO;
 import ru.khareba.Project3RESTApi.models.Measurement;
+import ru.khareba.Project3RESTApi.models.Sensor;
 import ru.khareba.Project3RESTApi.services.MeasurementsServices;
 import ru.khareba.Project3RESTApi.util.*;
 
