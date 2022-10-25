@@ -43,7 +43,7 @@ public class MeasurementsServices {
         measurement.setDate(LocalDateTime.now());
         System.out.println(measurement.toString()); //TODO
         //measurement.setSensor(new Sensor("test"));
-        //measurement.setSensor(sensorsServices.findByName(measurement.getSensor().getName()).orElse(null));
+        //measurement.setSensor(sensorsServices.findByName(measurement.getSensor().getName()).get());
         measurementsRepository.save(measurement);
     }
 }

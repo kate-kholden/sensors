@@ -16,7 +16,7 @@ public class MeasurementDTO {
     private boolean raining;
 
     @NotEmpty (message = "Sensor name should be not empty")
-    private Sensor sensor;
+    private SensorDTO sensor;
 
     public float getValue() {
         return value;
@@ -34,11 +34,11 @@ public class MeasurementDTO {
         this.raining = raining;
     }
 
-    public Sensor getSensor() {
+    public SensorDTO getSensor() {
         return sensor;
     }
 
-    public void setSensor(Sensor sensor) {
+    public void setSensor(SensorDTO sensor) {
         this.sensor = sensor;
     }
 }
