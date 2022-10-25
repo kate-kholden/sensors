@@ -11,4 +11,4 @@ import java.util.Optional;
 
 @Repository
 public interface SensorsRepository extends JpaRepository <Sensor,Integer> {
-    Optional <Sensor> findByName (String name);}
+    Sensor findByName (String name);}

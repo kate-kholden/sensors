@@ -41,9 +41,11 @@ public class MeasurementsServices {
     @Transactional
     public void save(Measurement measurement) {
         measurement.setDate(LocalDateTime.now());
-        System.out.println(measurement.toString()); //TODO
-        //measurement.setSensor(new Sensor("test"));
-        //measurement.setSensor(sensorsServices.findByName(measurement.getSensor().getName()).get());
+        System.out.println(measurement.toString());
+
+        //measurement.setSensor(sensorsServices.findByName(measurement.getSensor().getName()));
+        // TODO не работает, а надо взять и найти объект по имени в БД и добавить его сюда
+
         measurementsRepository.save(measurement);
     }
 }

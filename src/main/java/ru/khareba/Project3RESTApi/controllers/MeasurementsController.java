@@ -8,10 +8,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ru.khareba.Project3RESTApi.dto.MeasurementDTO;
-import ru.khareba.Project3RESTApi.dto.SensorDTO;
 import ru.khareba.Project3RESTApi.models.Measurement;
-import ru.khareba.Project3RESTApi.models.Sensor;
 import ru.khareba.Project3RESTApi.services.MeasurementsServices;
+import ru.khareba.Project3RESTApi.services.SensorsServices;
 import ru.khareba.Project3RESTApi.util.*;
 
 import javax.validation.Valid;
@@ -23,11 +22,13 @@ import java.util.stream.Collectors;
 public class MeasurementsController {
 
     private final MeasurementsServices measurementsServices;
+    private final SensorsServices sensorsServices;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public MeasurementsController(MeasurementsServices measurementsServices, ModelMapper modelMapper) {
+    public MeasurementsController(MeasurementsServices measurementsServices, SensorsServices sensorsServices, ModelMapper modelMapper) {
         this.measurementsServices = measurementsServices;
+        this.sensorsServices = sensorsServices;
         this.modelMapper = modelMapper;
     }
 
