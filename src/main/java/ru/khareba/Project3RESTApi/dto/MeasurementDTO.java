@@ -1,7 +1,5 @@
 package ru.khareba.Project3RESTApi.dto;
 
-import ru.khareba.Project3RESTApi.models.Sensor;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -16,7 +14,7 @@ public class MeasurementDTO {
     private boolean raining;
 
     @NotEmpty (message = "Sensor name should be not empty")
-    private SensorDTO sensor;
+    private String sensorName;
 
     public float getValue() {
         return value;
@@ -34,11 +32,11 @@ public class MeasurementDTO {
         this.raining = raining;
     }
 
-    public SensorDTO getSensor() {
-        return sensor;
+    public String getSensorName() {
+        return sensorName;
     }
 
-    public void setSensor(SensorDTO sensor) {
-        this.sensor = sensor;
+    public void setSensorName(String sensorName) {
+        this.sensorName = sensorName;
     }
 }

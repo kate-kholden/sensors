@@ -3,8 +3,8 @@ package ru.khareba.Project3RESTApi.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.khareba.Project3RESTApi.dto.MeasurementDTO;
 import ru.khareba.Project3RESTApi.models.Measurement;
-import ru.khareba.Project3RESTApi.models.Sensor;
 import ru.khareba.Project3RESTApi.repositories.MeasurementsRepository;
 import ru.khareba.Project3RESTApi.util.MeasurementNotFoundException;
 
@@ -39,13 +39,13 @@ public class MeasurementsServices {
         return foundMeasurement.orElseThrow(MeasurementNotFoundException::new);
     }
     @Transactional
-    public void save(Measurement measurement) {
-        measurement.setDate(LocalDateTime.now());
-        System.out.println(measurement.toString());
+    public void save(MeasurementDTO measurement) {
+        Measurement measurement1 = new Measurement();
+        measurement1.setDate(LocalDateTime.now());
+        measurement1.setSensor(sensorsServices.findByName(measurement.getSensorName()));
+        measurement1.setValue(measurement.getValue());
+        measurement1.setRaining(measurement.isRaining());
 
-        //measurement.setSensor(sensorsServices.findByName(measurement.getSensor().getName()));
-        // TODO не работает, а надо взять и найти объект по имени в БД и добавить его сюда
-
-        measurementsRepository.save(measurement);
+        measurementsRepository.save(measurement1);
     }
 }

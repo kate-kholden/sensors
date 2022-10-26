@@ -22,13 +22,11 @@ import java.util.stream.Collectors;
 public class MeasurementsController {
 
     private final MeasurementsServices measurementsServices;
-    private final SensorsServices sensorsServices;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public MeasurementsController(MeasurementsServices measurementsServices, SensorsServices sensorsServices, ModelMapper modelMapper) {
+    public MeasurementsController(MeasurementsServices measurementsServices, ModelMapper modelMapper) {
         this.measurementsServices = measurementsServices;
-        this.sensorsServices = sensorsServices;
         this.modelMapper = modelMapper;
     }
 
@@ -70,7 +68,7 @@ public class MeasurementsController {
             }
             throw new MeasurementNotCreatedException(errorMessage.toString());
         }
-        measurementsServices.save(convertToMeasurement(measurementDTO));
+        measurementsServices.save(measurementDTO);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 

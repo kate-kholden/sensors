@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
-import ru.khareba.Project3RESTApi.dto.SensorDTO;
 import ru.khareba.Project3RESTApi.models.Sensor;
 import ru.khareba.Project3RESTApi.services.SensorsServices;
 import ru.khareba.Project3RESTApi.util.SensorErrorResponse;
@@ -32,18 +31,18 @@ public class SensorsController {
     }
 
     @GetMapping()
-    public List<SensorDTO> getSensors() {
+    public List<ru.khareba.Project3RESTApi.dto.SensorDTO> getSensors() {
         return sensorsServices.findAll().stream().map(this::convertToSensorDTO)
                 .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public SensorDTO getSensor(@PathVariable("id") int id) {
+    public ru.khareba.Project3RESTApi.dto.SensorDTO getSensor(@PathVariable("id") int id) {
         return convertToSensorDTO(sensorsServices.findOne(id));
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<HttpStatus> create(@RequestBody @Valid SensorDTO sensorDTO,
+    public ResponseEntity<HttpStatus> create(@RequestBody @Valid ru.khareba.Project3RESTApi.dto.SensorDTO sensorDTO,
                                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -78,12 +77,12 @@ public class SensorsController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
-    private Sensor convertToSensor(SensorDTO sensorDTO) {
-        return modelMapper.map(sensorDTO,Sensor.class);
+    private Sensor convertToSensor(ru.khareba.Project3RESTApi.dto.SensorDTO sensorDTO) {
+        return modelMapper.map(sensorDTO, Sensor.class);
     }
 
-    private SensorDTO convertToSensorDTO(Sensor sensor) {
-        return modelMapper.map(sensor, SensorDTO.class);
+    private ru.khareba.Project3RESTApi.dto.SensorDTO convertToSensorDTO(Sensor sensor) {
+        return modelMapper.map(sensor, ru.khareba.Project3RESTApi.dto.SensorDTO.class);
     }
 
 }
