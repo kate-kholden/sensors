@@ -6,4 +6,6 @@ import ru.khareba.Project3RESTApi.models.Sensor;
 
 @Repository
 public interface SensorsRepository extends JpaRepository <Sensor,Integer> {
-    Sensor findByName (String name);}
+    Sensor findByName (String name);
+
+}

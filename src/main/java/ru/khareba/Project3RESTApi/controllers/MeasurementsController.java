@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.khareba.Project3RESTApi.dto.MeasurementDTO;
 import ru.khareba.Project3RESTApi.models.Measurement;
 import ru.khareba.Project3RESTApi.services.MeasurementsServices;
-import ru.khareba.Project3RESTApi.services.SensorsServices;
 import ru.khareba.Project3RESTApi.util.*;
 
 import javax.validation.Valid;
@@ -22,11 +21,14 @@ import java.util.stream.Collectors;
 public class MeasurementsController {
 
     private final MeasurementsServices measurementsServices;
+    private final MeasurementValidator measurementValidator;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public MeasurementsController(MeasurementsServices measurementsServices, ModelMapper modelMapper) {
+    public MeasurementsController(MeasurementsServices measurementsServices,
+                                  MeasurementValidator measurementValidator, ModelMapper modelMapper) {
         this.measurementsServices = measurementsServices;
+        this.measurementValidator = measurementValidator;
         this.modelMapper = modelMapper;
     }
 
@@ -57,6 +59,7 @@ public class MeasurementsController {
     @PostMapping("/add")
     public ResponseEntity<HttpStatus> create(@RequestBody @Valid MeasurementDTO measurementDTO,
                                              BindingResult bindingResult) {
+        measurementValidator.validate(convertToMeasurement(measurementDTO), bindingResult);
         if (bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
             List <FieldError> errors = bindingResult.getFieldErrors();

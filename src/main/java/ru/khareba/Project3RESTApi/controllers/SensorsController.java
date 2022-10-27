@@ -7,11 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import ru.khareba.Project3RESTApi.dto.SensorDTO;
+import ru.khareba.Project3RESTApi.models.Measurement;
 import ru.khareba.Project3RESTApi.models.Sensor;
 import ru.khareba.Project3RESTApi.services.SensorsServices;
-import ru.khareba.Project3RESTApi.util.SensorErrorResponse;
-import ru.khareba.Project3RESTApi.util.SensorNotCreatedException;
-import ru.khareba.Project3RESTApi.util.SensorNotFoundException;
+import ru.khareba.Project3RESTApi.util.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -22,11 +22,13 @@ import java.util.stream.Collectors;
 public class SensorsController {
 
     private final SensorsServices sensorsServices;
+    private final SensorValidator sensorValidator;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public SensorsController(SensorsServices sensorsServices, ModelMapper modelMapper) {
+    public SensorsController(SensorsServices sensorsServices, SensorValidator sensorValidator, ModelMapper modelMapper) {
         this.sensorsServices = sensorsServices;
+        this.sensorValidator = sensorValidator;
         this.modelMapper = modelMapper;
     }
 
@@ -42,8 +44,10 @@ public class SensorsController {
     }
 
     @PostMapping("/registration")
-    public ResponseEntity<HttpStatus> create(@RequestBody @Valid ru.khareba.Project3RESTApi.dto.SensorDTO sensorDTO,
+    public ResponseEntity<HttpStatus> create(@RequestBody @Valid SensorDTO sensorDTO,
                                              BindingResult bindingResult) {
+        sensorValidator.validate(convertToSensor(sensorDTO), bindingResult);
+
         if (bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
             List <FieldError> errors = bindingResult.getFieldErrors();
