@@ -2,18 +2,22 @@ package ru.khareba.Project3RESTApi.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import ru.khareba.Project3RESTApi.dto.MeasurementDTO;
 import ru.khareba.Project3RESTApi.models.Measurement;
 import ru.khareba.Project3RESTApi.services.MeasurementsServices;
 import ru.khareba.Project3RESTApi.util.*;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
@@ -75,6 +79,23 @@ public class MeasurementsController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
+    // todo отдалить метод. Должен передавать 1000 раз случайные измерения
+//    @PostMapping("/add1000requests")
+//    public ResponseEntity<HttpStatus> create1000() {
+//        RestTemplate restTemplate = new RestTemplate();
+//        Map<String,String> json = new HashMap();
+//
+//        for (int i = 0; i<1000; i++) {
+//            json.put("value", String.valueOf(Math.random() * 50));
+//            json.put("raining", String.valueOf(Math.random() < 0.5));
+//            json.put("sensorName", "Sensor name");
+//            String url = "http://localhost:8080/measurements/add";
+//            restTemplate.postForObject(url, new HttpEntity<>(json), Measurement.class);
+//        }
+//
+//        return new ResponseEntity(HttpStatus.OK);
+//    }
+
     @ExceptionHandler
     public ResponseEntity<MeasurementErrorResponse> measurementException(MeasurementNotFoundException exception) {
         MeasurementErrorResponse response = new MeasurementErrorResponse(
@@ -100,6 +121,5 @@ public class MeasurementsController {
     private MeasurementDTO convertToMeasurementDTO (Measurement measurement) {
         return modelMapper.map(measurement, MeasurementDTO.class);
     }
-
 
 }
